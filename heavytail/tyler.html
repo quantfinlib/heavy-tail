@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>heavytail.tyler API documentation</title>
+<meta name="description" content="Implementation of Tyler&#39;s estimator of covariance matrix for heavy-tail data …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>heavytail.tyler</code></h1>
+</header>
+<section id="section-intro">
+<p>Implementation of Tyler's estimator of covariance matrix for heavy-tail data.</p>
+<p>Author: Mohammadjavad Vakili</p>
+<p>This code implements Tyler's estimator, which is a robust estimator of the covariance matrix suitable for
+heavy-tailed distributions.
+It is particularly useful in scenarios where traditional estimators may fail due to the presence of outliers or
+non-normality in the data.</p>
+<p>Source:
+Tyler, D. E. (1987). A distribution-free M-estimator of multivariate scatter. The Annals of Statistics, 15(1), 234_251.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="heavytail.tyler.tyler_covariance"><code class="name flex">
+<span>def <span class="ident">tyler_covariance</span></span>(<span>data: numpy.ndarray,<br>epsilon: float = 1e-06,<br>tol: float = 1e-06,<br>max_iter: int = 100) ‑> numpy.ndarray</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tyler_covariance(
+    data: np.ndarray, epsilon: float = 1e-6, tol: float = 1e-6, max_iter: int = 100
+) -&gt; np.ndarray:
+    r&#34;&#34;&#34;Compute Tyler&#39;s estimator of the covariance matrix.
+
+    Let $\mathbf{X}$ be the input data matrix of shape $\(n_{samples}, n_{features}\)$ with mean zero,
+    where $n_{samples}$ is the number of observations and $n_{features}$ is the number of features.
+    For brevity of notation, we denote $T = n_{samples}$ and $N = n_{features}$.
+    In the context of multivariate time-series data, $T$ is the length of the time series
+    and $N$ is the number of variables.
+
+    The input data matrix $\mathbf{X}$ is defined as follows:
+
+    $$
+    \mathbf{X} = \big[ \mathbf{x}_1  \&amp; \mathbf{x}_2  \&amp;  \ldots  \&amp;  \mathbf{x}_T \big]
+    $$
+
+    where $\mathbf{x}_t$ is the $t$-th observation vector of length $N$.
+    For each observation $\mathbf{x}_t$, we can define a normalized version as follows:
+
+    $$
+    {\mathbf{s}}_t = \frac{\mathbf{x}_t}{\|\mathbf{x}_t\|} \quad \text{for } t = 1, \ldots, T
+    $$
+
+    where $\|\mathbf{x}_t\| = \sqrt{\mathbf{x}_t^T \mathbf{x}_t}$ is the Euclidean norm of the vector $\mathbf{x}_t$.
+
+    Tyler demonstrated that the pdf of the normalized observations $p(\mathbf{s}_t)$
+    follows an angular distribution regardless of the tail behavior of $\mathbf{x}_t$:
+
+    $$
+    p(\mathbf{s}_t) \propto \frac{1}{\| \Sigma  \|^{1/2}} \big( \mathbf{s}_t^T \Sigma^{-1} \mathbf{s}_t \big) ^ {-\frac{N}{2}},
+    $$
+
+    where $\| \Sigma \|$ is the determinant of the scatter matrix $\Sigma$.
+
+    Taking the logarithm of the pdf, we have:
+    $$
+    \log p(\mathbf{s}_t) = -\frac{N}{2} \log \big( \mathbf{s}_t^T \Sigma^{-1} \mathbf{s}_t \big) - \frac{1}{2} \log \| \Sigma  \|
+    $$
+
+    Substituting the normalized observations into the log-likelihood function, we obtain:
+    $$
+    \log p(\mathbf{s}_t) = -\frac{N}{2} \log \big( \big( \mathbf{x}_t^T \Sigma^{-1} \mathbf{x}_t \big) - \log \big( \|\mathbf{x}_t\|^2 \big) \big) - \frac{1}{2} \log \| \Sigma  \|
+    $$
+
+    We can obtain the negative-log-likelihood function of the scatter matrix $\Sigma$ by summing over all observations:
+
+    $$
+    \mathcal{L}(\Sigma) = -\sum_{t=1}^{T} \log p(\mathbf{s}_t) = \frac{N}{2} \sum_{t=1}^{T} \log \big( \mathbf{x}_t^T \Sigma^{-1} \mathbf{x}_t \big) + \frac{1}{2} T \log \| \Sigma  \|
+    $$
+
+    Therefore, the maximum likelihood estrimator (MLE) of the scatter matrix $\Sigma$ can be obatinaed by minimizing the following expression:
+
+    $$
+    \hat{\Sigma} = \arg\min_{\Sigma} \mathcal{L}(\Sigma) = \arg\min_{\Sigma} \Big[ \frac{N}{T} \sum_{t=1}^{T} \log \big( \mathbf{x}_t^T \Sigma^{-1} \mathbf{x}_t \big) + \log \| \Sigma  \| \Big]
+    $$
+
+    Solution to this optimization problem can be obtained using an iterative approach, where we update the estimate of the covariance matrix $\Sigma$ until convergence:
+
+
+    $$
+    \hat{\Sigma}^{(k+1)} = \frac{N}{T} \sum_{t=1}^{T} \frac{\mathbf{x}_t \mathbf{x}_t^T}{\mathbf{x}_t^T \hat{\Sigma}^{(k)^{-1}} \mathbf{x}_t}
+    $$
+
+    Existence of the solution is guaranteed as long as $ T &gt; N $.
+
+    The parameter $\Sigma$ can only be estimated up to a scale factor. This scale factor can be found heuristically
+    by the robustly estimating the variances of the $N$ variables, and requiring the diagonal elements of the covariance matrix
+    to be equal to the estimated variances. This is done by scaling the covariance matrix $\hat{\Sigma}$ as follows:
+
+    First, we compute the variances of the $N$ variables using the median absolute deviation (MAD) as follows:
+    $$
+    \hat{\sigma}_i^2 = \text{MAD}(\mathbf{x}_i) = 1.4826 \cdot \text{median}(|\mathbf{x}_i - \text{median}(\mathbf{x}_i)|)^2
+    $$
+
+    Next, we scale the covariance matrix $\hat{\Sigma}$ by requiring the diagonal elements to be equal to the estimated variances:
+    $$
+    \hat{\Sigma}_{ii} = \hat{\sigma}_i^2, \quad i = 1, \ldots, N
+    $$
+    This can be achieved by scaling the covariance matrix as follows:
+
+    $$
+    \hat{\Sigma} \rightarrow \frac{1}{N} \mathbf{1}^{T} \cdot \hat{\sigma}^{2} \cdot\hat{\Sigma},
+    $$
+    where $\mathbf{1}$ is a vector of ones of length $N$ and $\hat{\sigma}^{2}$ is the vector of estimated variances.
+
+    Parameters
+    ----------
+    data : ndarray
+        Input data matrix of shape (n_samples, n_features).
+    epsilon : float, optional
+        Small value to add to the diagonal elements of the initial guess of the covariance matrix.
+    tol : float
+        Tolerance for convergence.
+    max_iter : int
+        Maximum number of iterations.
+
+    Returns
+    -------
+    C : ndarray
+        Estimated covariance matrix.
+
+    Raises
+    ------
+    ValueError
+        If the estimated covariance matrix is not positive definite.
+
+    References
+    ----------
+    Tyler, D. E. (1987). A distribution-free M-estimator of multivariate scatter. The Annals of Statistics, 15(1), 234_251.
+
+    https://bookdown.org/palomar/portfoliooptimizationbook/3.5-heavy-tail-ML.html#tylers-estimator
+
+    &#34;&#34;&#34;  # noqa: E501
+    n_samples, n_features = data.shape
+    mu = np.median(data, axis=0)  # Shape (N,)
+    # Center the data by subtracting the median
+    data_cen = data - mu  # Shape (T, N)
+    # Initial guess for covariance matrix
+    cov = np.cov(data_cen, rowvar=False)  # Shape (N, N)
+    cov /= np.trace(cov)  # Normalize to have unit trace
+
+    # Iterative Tyler&#39;s estimator of covariance matrix
+    for _ in range(max_iter):
+        cov_prev = cov.copy()
+        cov_prev += epsilon * np.eye(n_features)
+        z = solve(cov_prev, data_cen.T).T  # Shape (T, N)
+        data_inv_cov_data = np.sum(data_cen * z, axis=1)  # Shape (T,)
+        weights = 1 / np.maximum(
+            data_inv_cov_data, epsilon
+        )  # Shape(T, ). Avoid division by zero
+        # Update covariance matrix
+        cov = (n_samples / data_cen.shape[0]) * (
+            data_cen.T @ np.diag(weights) @ data_cen
+        )  # Shape (N, N)
+        # Check for convergence
+        if _relative_error_array(x=cov, y=cov_prev) &lt; tol:
+            break
+    # Estimate the variances of the features using median absolute deviation
+    sigma2 = _median_absolute_deviation(data)
+    # Scale the covariance matrix to match the estimated variances
+    cov = np.outer(np.ones(n_features), sigma2) * cov / np.diag(cov)
+    cov = _symmetrizer(cov)  # Ensure symmetry
+    if not _check_positive_definite(cov):
+        msg = &#34;Estimated covariance matrix is not positive definite.&#34;
+        raise ValueError(msg)
+    return cov</code></pre>
+</details>
+<div class="desc"><p>Compute Tyler's estimator of the covariance matrix.</p>
+<p>Let $\mathbf{X}$ be the input data matrix of shape $(n_{samples}, n_{features})$ with mean zero,
+where $n_{samples}$ is the number of observations and $n_{features}$ is the number of features.
+For brevity of notation, we denote $T = n_{samples}$ and $N = n_{features}$.
+In the context of multivariate time-series data, $T$ is the length of the time series
+and $N$ is the number of variables.</p>
+<p>The input data matrix $\mathbf{X}$ is defined as follows:</p>
+<p><span><span class="MathJax_Preview">
+\mathbf{X} = \big[ \mathbf{x}_1
+\&amp; \mathbf{x}_2
+\&amp;
+\ldots
+\&amp;
+\mathbf{x}_T \big]
+</span><script type="math/tex; mode=display">
+\mathbf{X} = \big[ \mathbf{x}_1
+\& \mathbf{x}_2
+\&
+\ldots
+\&
+\mathbf{x}_T \big]
+</script></span></p>
+<p>where $\mathbf{x}_t$ is the $t$-th observation vector of length $N$.
+For each observation $\mathbf{x}_t$, we can define a normalized version as follows:</p>
+<p><span><span class="MathJax_Preview">
+{\mathbf{s}}_t = \frac{\mathbf{x}_t}{\|\mathbf{x}_t\|} \quad \text{for } t = 1, \ldots, T
+</span><script type="math/tex; mode=display">
+{\mathbf{s}}_t = \frac{\mathbf{x}_t}{\|\mathbf{x}_t\|} \quad \text{for } t = 1, \ldots, T
+</script></span></p>
+<p>where $|\mathbf{x}_t| = \sqrt{\mathbf{x}_t^T \mathbf{x}_t}$ is the Euclidean norm of the vector $\mathbf{x}_t$.</p>
+<p>Tyler demonstrated that the pdf of the normalized observations $p(\mathbf{s}_t)$
+follows an angular distribution regardless of the tail behavior of $\mathbf{x}_t$:</p>
+<p><span><span class="MathJax_Preview">
+p(\mathbf{s}_t) \propto \frac{1}{\| \Sigma
+\|^{1/2}} \big( \mathbf{s}_t^T \Sigma^{-1} \mathbf{s}_t \big) ^ {-\frac{N}{2}},
+</span><script type="math/tex; mode=display">
+p(\mathbf{s}_t) \propto \frac{1}{\| \Sigma
+\|^{1/2}} \big( \mathbf{s}_t^T \Sigma^{-1} \mathbf{s}_t \big) ^ {-\frac{N}{2}},
+</script></span></p>
+<p>where $| \Sigma |$ is the determinant of the scatter matrix $\Sigma$.</p>
+<p>Taking the logarithm of the pdf, we have:
+<span><span class="MathJax_Preview">
+\log p(\mathbf{s}_t) = -\frac{N}{2} \log \big( \mathbf{s}_t^T \Sigma^{-1} \mathbf{s}_t \big) - \frac{1}{2} \log \| \Sigma
+\|
+</span><script type="math/tex; mode=display">
+\log p(\mathbf{s}_t) = -\frac{N}{2} \log \big( \mathbf{s}_t^T \Sigma^{-1} \mathbf{s}_t \big) - \frac{1}{2} \log \| \Sigma
+\|
+</script></span></p>
+<p>Substituting the normalized observations into the log-likelihood function, we obtain:
+<span><span class="MathJax_Preview">
+\log p(\mathbf{s}_t) = -\frac{N}{2} \log \big( \big( \mathbf{x}_t^T \Sigma^{-1} \mathbf{x}_t \big) - \log \big( \|\mathbf{x}_t\|^2 \big) \big) - \frac{1}{2} \log \| \Sigma
+\|
+</span><script type="math/tex; mode=display">
+\log p(\mathbf{s}_t) = -\frac{N}{2} \log \big( \big( \mathbf{x}_t^T \Sigma^{-1} \mathbf{x}_t \big) - \log \big( \|\mathbf{x}_t\|^2 \big) \big) - \frac{1}{2} \log \| \Sigma
+\|
+</script></span></p>
+<p>We can obtain the negative-log-likelihood function of the scatter matrix $\Sigma$ by summing over all observations:</p>
+<p><span><span class="MathJax_Preview">
+\mathcal{L}(\Sigma) = -\sum_{t=1}^{T} \log p(\mathbf{s}_t) = \frac{N}{2} \sum_{t=1}^{T} \log \big( \mathbf{x}_t^T \Sigma^{-1} \mathbf{x}_t \big) + \frac{1}{2} T \log \| \Sigma
+\|
+</span><script type="math/tex; mode=display">
+\mathcal{L}(\Sigma) = -\sum_{t=1}^{T} \log p(\mathbf{s}_t) = \frac{N}{2} \sum_{t=1}^{T} \log \big( \mathbf{x}_t^T \Sigma^{-1} \mathbf{x}_t \big) + \frac{1}{2} T \log \| \Sigma
+\|
+</script></span></p>
+<p>Therefore, the maximum likelihood estrimator (MLE) of the scatter matrix $\Sigma$ can be obatinaed by minimizing the following expression:</p>
+<p><span><span class="MathJax_Preview">
+\hat{\Sigma} = \arg\min_{\Sigma} \mathcal{L}(\Sigma) = \arg\min_{\Sigma} \Big[ \frac{N}{T} \sum_{t=1}^{T} \log \big( \mathbf{x}_t^T \Sigma^{-1} \mathbf{x}_t \big) + \log \| \Sigma
+\| \Big]
+</span><script type="math/tex; mode=display">
+\hat{\Sigma} = \arg\min_{\Sigma} \mathcal{L}(\Sigma) = \arg\min_{\Sigma} \Big[ \frac{N}{T} \sum_{t=1}^{T} \log \big( \mathbf{x}_t^T \Sigma^{-1} \mathbf{x}_t \big) + \log \| \Sigma
+\| \Big]
+</script></span></p>
+<p>Solution to this optimization problem can be obtained using an iterative approach, where we update the estimate of the covariance matrix $\Sigma$ until convergence:</p>
+<p><span><span class="MathJax_Preview">
+\hat{\Sigma}^{(k+1)} = \frac{N}{T} \sum_{t=1}^{T} \frac{\mathbf{x}_t \mathbf{x}_t^T}{\mathbf{x}_t^T \hat{\Sigma}^{(k)^{-1}} \mathbf{x}_t}
+</span><script type="math/tex; mode=display">
+\hat{\Sigma}^{(k+1)} = \frac{N}{T} \sum_{t=1}^{T} \frac{\mathbf{x}_t \mathbf{x}_t^T}{\mathbf{x}_t^T \hat{\Sigma}^{(k)^{-1}} \mathbf{x}_t}
+</script></span></p>
+<p>Existence of the solution is guaranteed as long as $ T &gt; N $.</p>
+<p>The parameter $\Sigma$ can only be estimated up to a scale factor. This scale factor can be found heuristically
+by the robustly estimating the variances of the $N$ variables, and requiring the diagonal elements of the covariance matrix
+to be equal to the estimated variances. This is done by scaling the covariance matrix $\hat{\Sigma}$ as follows:</p>
+<p>First, we compute the variances of the $N$ variables using the median absolute deviation (MAD) as follows:
+<span><span class="MathJax_Preview">
+\hat{\sigma}_i^2 = \text{MAD}(\mathbf{x}_i) = 1.4826 \cdot \text{median}(|\mathbf{x}_i - \text{median}(\mathbf{x}_i)|)^2
+</span><script type="math/tex; mode=display">
+\hat{\sigma}_i^2 = \text{MAD}(\mathbf{x}_i) = 1.4826 \cdot \text{median}(|\mathbf{x}_i - \text{median}(\mathbf{x}_i)|)^2
+</script></span></p>
+<p>Next, we scale the covariance matrix $\hat{\Sigma}$ by requiring the diagonal elements to be equal to the estimated variances:
+<span><span class="MathJax_Preview">
+\hat{\Sigma}_{ii} = \hat{\sigma}_i^2, \quad i = 1, \ldots, N
+</span><script type="math/tex; mode=display">
+\hat{\Sigma}_{ii} = \hat{\sigma}_i^2, \quad i = 1, \ldots, N
+</script></span>
+This can be achieved by scaling the covariance matrix as follows:</p>
+<p><span><span class="MathJax_Preview">
+\hat{\Sigma} \rightarrow \frac{1}{N} \mathbf{1}^{T} \cdot \hat{\sigma}^{2} \cdot\hat{\Sigma},
+</span><script type="math/tex; mode=display">
+\hat{\Sigma} \rightarrow \frac{1}{N} \mathbf{1}^{T} \cdot \hat{\sigma}^{2} \cdot\hat{\Sigma},
+</script></span>
+where $\mathbf{1}$ is a vector of ones of length $N$ and $\hat{\sigma}^{2}$ is the vector of estimated variances.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>data</code></strong> :&ensp;<code>ndarray</code></dt>
+<dd>Input data matrix of shape (n_samples, n_features).</dd>
+<dt><strong><code>epsilon</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Small value to add to the diagonal elements of the initial guess of the covariance matrix.</dd>
+<dt><strong><code>tol</code></strong> :&ensp;<code>float</code></dt>
+<dd>Tolerance for convergence.</dd>
+<dt><strong><code>max_iter</code></strong> :&ensp;<code>int</code></dt>
+<dd>Maximum number of iterations.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>C</code></strong> :&ensp;<code>ndarray</code></dt>
+<dd>Estimated covariance matrix.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the estimated covariance matrix is not positive definite.</dd>
+</dl>
+<h2 id="references">References</h2>
+<p>Tyler, D. E. (1987). A distribution-free M-estimator of multivariate scatter. The Annals of Statistics, 15(1), 234_251.</p>
+<p><a href="https://bookdown.org/palomar/portfoliooptimizationbook/3.5-heavy-tail-ML.html#tylers-estimator">https://bookdown.org/palomar/portfoliooptimizationbook/3.5-heavy-tail-ML.html#tylers-estimator</a></p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="heavytail" href="index.html">heavytail</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="heavytail.tyler.tyler_covariance" href="#heavytail.tyler.tyler_covariance">tyler_covariance</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>
