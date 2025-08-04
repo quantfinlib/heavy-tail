@@ -43,4 +43,4 @@ jobs:
       - name: Test with pytest
         shell: bash {0}
         run: |
-          uv run pytest --cov=heavytail --cov-branch --cov-report=term-missing --cov-report=xml:coverage.xml -vv test
+          uv run pytest --cov=heavytail --cov-branch --cov-report=term-missing --cov-report=xml:coverage.xml -vv tests

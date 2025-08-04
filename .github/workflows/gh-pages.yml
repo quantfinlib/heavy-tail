@@ -4,7 +4,7 @@ on:
   push:
     branches: 
       - main
-      - 'feature-*'
+      - '*'
   pull_request:
     branches: [main]
   release:
@@ -37,3 +37,4 @@ jobs:
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: docs # The folder the action should deploy.
+          token: ${{ secrets.GH_ACTION_PAT }}
