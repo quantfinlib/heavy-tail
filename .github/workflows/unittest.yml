@@ -39,7 +39,7 @@ jobs:
           else
             source .venv/bin/activate
           fi
-          uv pip install -e .[test]
+          uv pip install -e .[tests]
       - name: Test with pytest
         shell: bash {0}
         run: |
