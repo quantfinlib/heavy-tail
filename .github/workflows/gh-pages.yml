@@ -28,9 +28,8 @@ jobs:
       - name: Build api with pdoc3
         run: uv run pdoc --html  -c latex_math=True --output-dir docs --force heavytail
         
-      #- name: Build static HTML for  notebooks
-      #  run: |
-      #    uv run jupyter nbconvert --to html --execute --allow-errors docs/*.ipynb
+      - name: Build static HTML pages for Jupyter notebooks
+        run: uv run jupyter nbconvert --to html --execute --allow-errors docs/*.ipynb
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4  # Source: https://github.com/marketplace/actions/deploy-to-github-pages

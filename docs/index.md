@@ -5,6 +5,12 @@
 &nbsp;&nbsp;&nbsp; [🔗 **API**](heavytail)
 &nbsp;&nbsp;&nbsp; [📖 **Docs**](https://quantfinlib.github.io/heavy-tail/)
 
+
+## Getting Started
+
+* [Tyler Covariance Estimator](TylerCovariance.html)
+
+
 ## Documentation
 
 The documentation is available at [githubpages](https://quantfinlib.github.io/heavy-tail/).
